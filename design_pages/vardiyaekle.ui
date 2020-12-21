@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>vardiyekle</class>
+ <widget class="QWidget" name="vardiyekle">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>532</width>
+    <height>510</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+background: #354152;
+}
+
+QLabel{
+	font-size:24px;
+	color:white;
+
+}
+
+QLineEdit{
+border-radius:10px;
+padding-left: 15px;
+font-size:16px;
+
+}
+QPushButton{
+height:42px;
+border-radius: 15px;
+	background-color: qlineargradient(spread:reflect, x1:1, y1:0.466409, x2:0.188, y2:0.482727, stop:0.823864 rgba(82, 185, 143, 255), stop:1 rgba(115, 185, 153, 255));
+padding: 8px 16px;
+color: white;
+font-size: 20px;
+}
+QPushButton:pressed{
+color: black;
+background: #008bd1
+
+}
+QGroupBox{
+border:none;
+
+}
+QComboBox {
+    border: 1px solid gray;
+    border-radius: 10px;
+    min-width: 6em;
+	font-size:16px;
+	padding-left:15px;
+
+}
+
+QComboBox:on {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+QComboBox QAbstractItemView {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: white;
+    border: 1px solid gray;
+    box-shadow: transparent;
+}
+
+QComboBox::drop-down {
+    border-color: transparent;
+}
+
+
+
+QSpinBox{
+height:42px;
+}
+
+QSpinBox {
+    /*text-align: center;*/
+    padding-right: 15px;
+    border-width: 5px;
+	border-radius:10px;
+	padding-left:15px;
+	font-size:20px;
+}
+
+
+QSpinBox::up-button, QSpinBox::down-button {
+     subcontrol-origin: border;
+     padding-left: 10px;
+     padding-right: 40px;
+     width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+     /*height: 14px;*/
+     border-width: 1px;
+     border-radius: 5px;
+     background-color: #eeeeee;
+
+}
+
+QSpinBox::up-button {
+    subcontrol-position: top right; /* position at the top right corner */
+	height:42px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #bbbb;
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::down-arrow:disabled {
+    image: none;
+}
+QSpinBox::up-arrow, QSpinBox::down-arrow {
+     width: 20px;
+     height: 20px;
+     border: 1px;
+}
+QSpinBox::up-arrow {
+padding-left:20px;
+	image: url(:/resimler/icons/chevron-up.png);
+}
+
+QSpinBox::down-button {
+    subcontrol-position: bottom left; /* position at bottom right corner */
+	height:42px;
+}
+
+QSpinBox::down-arrow {
+image: url(:/resimler/icons/chevron-down.png);
+padding-left:20px;
+}
+
+
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>30</y>
+        <width>311</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+font: 44px &quot;Helvetica Neue&quot;, sans-serif;
+margin: 0px 0px 16px;</string>
+      </property>
+      <property name="text">
+       <string>VARDİYA EKLE</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spin_Kontenjan">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>290</y>
+        <width>224</width>
+        <height>42</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>110</y>
+        <width>201</width>
+        <height>44</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Vardiya Sorumlusu</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>47</x>
+        <y>164</y>
+        <width>126</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vardiya Kodu</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>220</y>
+        <width>126</width>
+        <height>44</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vardiya</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>290</y>
+        <width>126</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Kontenjan</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cmb_Vardiya">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>230</y>
+        <width>224</width>
+        <height>44</height>
+       </rect>
+      </property>
+      <property name="currentText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_VardiyaEkle">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>390</y>
+        <width>357</width>
+        <height>58</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>VARDİYA EKLE</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="text_DersKodu">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>170</y>
+        <width>224</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Vardiya Kodu</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="text_adiSoyadi">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>110</y>
+        <width>224</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Vardiya Sorumlusu</string>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>text_DersKodu</tabstop>
+  <tabstop>cmb_Vardiya</tabstop>
+  <tabstop>spin_Kontenjan</tabstop>
+  <tabstop>btn_VardiyaEkle</tabstop>
+  <tabstop>text_adiSoyadi</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../ui_pages/resoruces.qrc"/>
+ </resources>
+ <connections/>
+</ui>

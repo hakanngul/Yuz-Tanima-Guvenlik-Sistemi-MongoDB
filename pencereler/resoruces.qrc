@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="resimler">
+    <file>icons/chevron-down.png</file>
+    <file>icons/chevron-up.png</file>
+    <file>icons/damla.png</file>
+  </qresource>
+</RCC>

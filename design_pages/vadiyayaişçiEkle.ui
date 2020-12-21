@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VardiyaIsciEkleForm</class>
+ <widget class="QWidget" name="VardiyaIsciEkleForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>588</width>
+    <height>516</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+
+background: #354152;
+
+}
+
+QLineEdit{
+	border: 2px solid gray;
+	border-color:white;
+    border-radius: 10px;
+    min-width: 6em;
+	font-size:20px;
+	padding-left:15px;
+	height:42px;
+	border-radius:15px;
+	border-color: #303030;
+	background: transparent;
+	color:#ffffffff;
+
+
+}
+
+
+
+QComboBox {
+    border: 2px solid gray;
+    border-radius: 10px;
+    min-width: 6em;
+	font-size:20px;
+	border-color: rgb(255, 255, 255);
+	padding-left:15px;
+	height:42px;
+	border-radius:15px;
+	border-color: #303030;
+	background: transparent;
+	color:white;
+
+}
+
+QComboBox:on {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+QComboBox QAbstractItemView {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: #354152;
+    border: 1px solid gray;
+	color:white;
+
+}
+
+QComboBox::drop-down {
+    border-color: white;
+}
+QPushButton{
+border-radius: 15px;
+background-color: qlineargradient(spread:reflect, x1:1, y1:0.466409, x2:0.188, y2:0.482727, stop:0.823864 rgba(82, 185, 143, 255), stop:1 rgba(115, 185, 153, 255));
+padding: 8px 16px;
+color: white;
+font-size: 20px;
+height:42px;
+}
+QPushButton:pressed{
+color: black;
+background: #008bd1
+
+}
+
+
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLineEdit" name="txt_OgrNo">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>30</y>
+        <width>261</width>
+        <height>46</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>İşçi No</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txt_AdSoyad">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>110</y>
+        <width>261</width>
+        <height>46</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Adı ve Soyadı</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txt_Vardiya">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>190</y>
+        <width>261</width>
+        <height>46</height>
+       </rect>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Vardiya</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_ara">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>260</y>
+        <width>241</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Ara</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cmb_Vardiyalar">
+      <property name="geometry">
+       <rect>
+        <x>12</x>
+        <y>350</y>
+        <width>541</width>
+        <height>46</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Ekle">
+      <property name="geometry">
+       <rect>
+        <x>12</x>
+        <y>437</y>
+        <width>541</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>İşçiyi Vardiyaya Ekle</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>272</width>
+        <height>292</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:white;</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
