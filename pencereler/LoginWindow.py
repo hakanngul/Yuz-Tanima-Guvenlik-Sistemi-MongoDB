@@ -10,7 +10,10 @@ class LoginFormWindow(QWidget):
         self.ui.setupUi(self)
         self.ui.text_kullaniciAdi.setText("test")
         self.ui.text_Sifre.setText("123456")
+
         self.initSlots()
+
+
 
     def initSlots(self):
         self.ui.btn_kayit.clicked.connect(self.RegisterFormWindow)

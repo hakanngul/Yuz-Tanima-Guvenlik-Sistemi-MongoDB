@@ -2,8 +2,6 @@ class IAdmin:
 
     def register(self): raise NotImplementedError
 
-    def checkUserName(self, *args): raise NotImplementedError
-
     def createUser(self): raise NotImplementedError
 
     def editUser(self): raise NotImplementedError
