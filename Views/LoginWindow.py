@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from ui_pages.ui_login import Ui_LoginForm
-from Operations.CommonMethods import CommonMethods
+from Controllers.CommonMethods import CommonMethods
 
 
 class LoginFormWindow(QWidget):
@@ -10,7 +10,10 @@ class LoginFormWindow(QWidget):
         self.ui.setupUi(self)
         self.ui.text_kullaniciAdi.setText("test")
         self.ui.text_Sifre.setText("123456")
+
         self.initSlots()
+
+
 
     def initSlots(self):
         self.ui.btn_kayit.clicked.connect(self.RegisterFormWindow)
@@ -42,7 +45,7 @@ class LoginFormWindow(QWidget):
             self.destroy(destroyWindow=True)
 
     def RegisterFormWindow(self):
-        from pencereler.Register import RegisterWindow
+        from Views.Register import RegisterWindow
         print("Log Kayit")
         self.goToRegisterWindow = RegisterWindow()
 

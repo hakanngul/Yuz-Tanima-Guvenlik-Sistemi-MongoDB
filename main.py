@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication
-from pencereler.LoginWindow import LoginFormWindow
+from Views.LoginWindow import LoginFormWindow
 
 if __name__ == '__main__':
     import sys
