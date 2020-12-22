@@ -8,12 +8,9 @@ class LoginFormWindow(QWidget):
         super().__init__()
         self.ui = Ui_LoginForm()
         self.ui.setupUi(self)
-        self.ui.text_kullaniciAdi.setText("test")
-        self.ui.text_Sifre.setText("123456")
-
+        self.ui.text_kullaniciAdi.setText("yusuf")
+        self.ui.text_Sifre.setText("123123")
         self.initSlots()
-
-
 
     def initSlots(self):
         self.ui.btn_kayit.clicked.connect(self.RegisterFormWindow)
@@ -23,19 +20,20 @@ class LoginFormWindow(QWidget):
         username = self.ui.text_kullaniciAdi.text()
         password = self.ui.text_Sifre.text()
         userCheck = CommonMethods()
-        userCheck = userCheck.login(username, password)
-        if userCheck:
-            if userCheck[-1] == "admin":
+        if self.ui.check_kontrol.isChecked():
+            print("test")
+            res = userCheck.adminLogin(username, password)
+            if res:
                 QMessageBox.information(self, "State", "Giriş Başarılı")
-                self.goToMainPage(userCheck[-1])
-            elif userCheck[-1] == "vardiyasorumlusu":
+                self.goToMainPage(userType=True)
+            else:
                 QMessageBox.information(self, "State", "Giriş Başarılı")
-                self.goToMainPage(userCheck[-1])
+                self.goToMainPage(userType=False)
         else:
-            QMessageBox.critical(self, "Hata", "Böyle bir kullanıcı bulunamadı")
+            userCheck.supervisorLogin(username, password)
 
     def goToMainPage(self, userType):
-        if userType == "admin":
+        if userType:
             from MainWindow import MainWindowForm
             self.newWindow = MainWindowForm()
             self.destroy(destroyWindow=True)

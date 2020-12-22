@@ -17,7 +17,7 @@ class RegisterWindow(QWidget):
 
     def checkAdmin(self):
         cnx, cursor = CreateConnection()
-        cursor.execute("Select * from kisi where user_role=%s", ('admin',))
+        cursor.execute("Select * from admin where user_role=%s", ('admin',))
         response = cursor.fetchone()
         if response:
             self.ui.cmb_vardiya.removeItem(2)

@@ -5,9 +5,26 @@ import mysql.connector
 
 class CommonMethods(ICommonMethods):
 
-    def login(self, username, password):
+    def adminLogin(self, username, password):
         cnx, cursor = CreateConnection()
-        sql = "Select * from kisi where username=%s and password=%s"
+        print("test2")
+        sql = "Select * from admin where username=%s and password=%s"
+        try:
+            cursor.execute(sql, (username, password))
+            result = cursor.fetchone()
+            if result:
+                return result
+            return False
+        except mysql.connector.Error as err:
+            print("Error =>", err)
+            print("Test 3")
+            return err
+        finally:
+            cnx.close()
+
+    def supervisorLogin(self, username, password):
+        cnx, cursor = CreateConnection()
+        sql = "Select * from supervisor where username=%s and password=%s"
         try:
             cursor.execute(sql, (username, password))
             result = cursor.fetchone()
@@ -27,7 +44,7 @@ class CommonMethods(ICommonMethods):
         print("***")
         print(username)
         print("***")
-        sql = "Select username from kisi where username=%s"
+        sql = "Select * from supervisor where username=%s"
         try:
             print("Test checkusername")
             cursor.execute(sql, (username,))
@@ -48,7 +65,7 @@ class CommonMethods(ICommonMethods):
         print("***")
         print(email)
         print("***")
-        sql = "Select username from kisi where email=%s"
+        sql = "Select * from supervisor where email=%s"
         try:
             print("Test check Email")
             cursor.execute(sql, (email,))
