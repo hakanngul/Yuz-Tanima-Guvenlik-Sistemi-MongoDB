@@ -1,6 +1,6 @@
 class IAdmin:
 
-    def register(self): raise NotImplementedError
+    def save(self): raise NotImplementedError
 
     def createUser(self): raise NotImplementedError
 

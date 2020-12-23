@@ -1,6 +1,10 @@
-class IPerson:
+from abc import ABC, abstractmethod
+
+
+class IPerson(ABC):
+    @abstractmethod
     def __init__(self, **kwargs):
-        self.userid = kwargs.get("userid")
+        self.id = kwargs.get("_id")
         self.full_name = kwargs.get("full_name")
         self.email = kwargs.get("email")
         self.phone = kwargs.get("phone")

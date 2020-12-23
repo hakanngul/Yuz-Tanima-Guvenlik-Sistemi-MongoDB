@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
+from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
 from PyQt5.QtCore import QCoreApplication
 from ui_pages.ui_kayit import Ui_VardiyaSorumluKayit
 from Database.DataBaseConnection import CreateConnection
@@ -16,16 +16,12 @@ class RegisterWindow(QWidget):
         self.show()
 
     def checkAdmin(self):
-        cnx, cursor = CreateConnection()
-        cursor.execute("Select * from admin where user_role=%s", ('admin',))
-        response = cursor.fetchone()
-        if response:
-            self.ui.cmb_vardiya.removeItem(2)
-            _translate = QCoreApplication.translate
-            self.ui.cmb_vardiya.setItemText(0, _translate("VardiyaSorumluKayit", "Rol Seçiniz"))
-            self.ui.cmb_vardiya.setItemText(1, _translate("VardiyaSorumluKayit", "SuperVisor"))
-        else:
-            print(False)
+        db = CreateConnection()["users"]
+        result = db.find_one({
+            "user_role": {"$eq": "admin"}
+        })
+        if result:
+            self.clearForm()
 
     def testButton(self):
         test = self.ui.cmb_vardiya.currentText()
@@ -55,15 +51,9 @@ class RegisterWindow(QWidget):
         data = (full_name, userType, username, password, phone, email)
         if checkPassword == password:
             if userType == "Admin":
-                try:
-                    self.registerAdminFromOperations(data)
-                except ValueError as err:
-                    print(f'Hata Oluştu {err}')
+                self.registerAdminFromOperations(data)
             elif userType == "SuperVisor":
-                try:
-                    self.registerSuperVisorFromOperation(data)
-                except ValueError as err:
-                    print(f'Hata Oluştu {err}')
+                self.registerSuperVisorFromOperation(data)
             else:
                 QMessageBox.warning(self, "Hata", "Lütfen Kullanıcı Türünü Seçiniz")
         else:
@@ -72,25 +62,26 @@ class RegisterWindow(QWidget):
     def registerSuperVisorFromOperation(self, data):
         from Controllers.SuperVisor import SuperVisor
         from Controllers.CommonMethods import CommonMethods
-        newSuperVisor = SuperVisor()
+        newSupervisor = SuperVisor()
         checkParameters = CommonMethods()
-        newSuperVisor.full_name = data[0]
-        newSuperVisor.user_role = "supervisor"
-        newSuperVisor.username = data[2]
-        newSuperVisor.password = data[3]
-        newSuperVisor.phone = data[4]
-        newSuperVisor.email = data[5]
-        checkUserName = checkParameters.checkUserName(newSuperVisor.username)
-        checkEmail = checkParameters.checkEmail(newSuperVisor.email)
+        newSupervisor.full_name = data[0]
+        newSupervisor.user_role = "supervisor"
+        newSupervisor.username = data[2]
+        newSupervisor.password = data[3]
+        newSupervisor.phone = data[4]
+        newSupervisor.email = data[5]
+        checkUserName = checkParameters.checkUserName(newSupervisor.username)
+        checkEmail = checkParameters.checkEmail(newSupervisor.email)
         if checkUserName:
-            QMessageBox.warning(self, "Username Kontrol", f'{newSuperVisor.username} kullanılmaktadır.')
+            QMessageBox.warning(self, "Username Kontrol", f'{newSupervisor.username} kullanılmaktadır.')
         elif checkEmail:
-            QMessageBox.warning(self, "Email Kontrol", f'{newSuperVisor.email} kullanılmaktadır.')
+            QMessageBox.warning(self, "Email Kontrol", f'{newSupervisor.email} kullanılmaktadır.')
         else:
-            result = newSuperVisor.register()
+            result = newSupervisor.save()
             if result:
                 QMessageBox.information(self, "Kayıt Durumu", "Kayıt Başarlı Oldu!")
                 self.clearForm()
+
             else:
                 QMessageBox.critical(self, "Kayıt Durumu", "Kayıt Başarısız Oldu!")
 
@@ -107,13 +98,13 @@ class RegisterWindow(QWidget):
         newAdmin.email = data[5]
         checkUserName = checkParameters.checkUserName(newAdmin.username)
         checkEmail = checkParameters.checkEmail(newAdmin.email)
-
         if checkUserName:
             QMessageBox.warning(self, "Username Kontrol", f'{newAdmin.username} kullanılmaktadır.')
+
         elif checkEmail:
             QMessageBox.warning(self, "Email Kontrol", f'{newAdmin.email} kullanılmaktadır.')
         else:
-            result = newAdmin.register()
+            result = newAdmin.save()
             if result:
                 QMessageBox.information(self, "Kayıt Durumu", "Kayıt Başarlı Oldu!")
                 self.clearForm()

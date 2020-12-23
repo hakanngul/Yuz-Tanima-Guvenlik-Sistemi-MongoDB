@@ -1,6 +1,6 @@
 class ISuperVisor:
 
-    def register(self): raise NotImplementedError
+    def save(self): raise NotImplementedError
 
     def createWorker(self): raise NotImplementedError
 

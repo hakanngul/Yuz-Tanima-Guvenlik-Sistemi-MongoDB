@@ -26,48 +26,48 @@ class Ui_LoginForm(object):
         self.frame.setAcceptDrops(False)
         self.frame.setToolTipDuration(0)
         self.frame.setStyleSheet("QFrame{\n"
-"background: #354152;\n"
-"}\n"
-"\n"
-"QLineEdit{\n"
-"color:white;\n"
-"border-radius:15px;\n"
-"border: 1px solid;\n"
-"border-color: #303030;\n"
-"background: transparent;\n"
-"padding-left: 15px;\n"
-"font-size: 16px;\n"
-"}\n"
-"\n"
-"QPushButton{\n"
-"border-radius: 15px;\n"
-"    background-color: qlineargradient(spread:reflect, x1:1, y1:0.466409, x2:0.188, y2:0.482727, stop:0.823864 rgba(82, 185, 143, 255), stop:1 rgba(115, 185, 153, 255));\n"
-"padding: 8px 16px;\n"
-"color: white;\n"
-"font-size: 20px;\n"
-"}\n"
-"QPushButton#btn_login:pressed{\n"
-"color: black;\n"
-"background: #008bd1\n"
-"\n"
-"}\n"
-"\n"
-"QCommandLinkButton{\n"
-"font-size: 16px;\n"
-"background: #4c5d75;\n"
-"\n"
-"}\n"
-"\n"
-"QCommandLinkButton:pressed{\n"
-"\n"
-"    background-color: rgb(92, 186, 138);\n"
-"\n"
-"}\n"
-"\n"
-"\n"
-"QGroupBox{\n"
-"border:none;\n"
-"}")
+                                 "background: #354152;\n"
+                                 "}\n"
+                                 "\n"
+                                 "QLineEdit{\n"
+                                 "color:white;\n"
+                                 "border-radius:15px;\n"
+                                 "border: 1px solid;\n"
+                                 "border-color: #303030;\n"
+                                 "background: transparent;\n"
+                                 "padding-left: 15px;\n"
+                                 "font-size: 16px;\n"
+                                 "}\n"
+                                 "\n"
+                                 "QPushButton{\n"
+                                 "border-radius: 15px;\n"
+                                 "    background-color: qlineargradient(spread:reflect, x1:1, y1:0.466409, x2:0.188, y2:0.482727, stop:0.823864 rgba(82, 185, 143, 255), stop:1 rgba(115, 185, 153, 255));\n"
+                                 "padding: 8px 16px;\n"
+                                 "color: white;\n"
+                                 "font-size: 20px;\n"
+                                 "}\n"
+                                 "QPushButton#btn_login:pressed{\n"
+                                 "color: black;\n"
+                                 "background: #008bd1\n"
+                                 "\n"
+                                 "}\n"
+                                 "\n"
+                                 "QCommandLinkButton{\n"
+                                 "font-size: 16px;\n"
+                                 "background: #4c5d75;\n"
+                                 "\n"
+                                 "}\n"
+                                 "\n"
+                                 "QCommandLinkButton:pressed{\n"
+                                 "\n"
+                                 "    background-color: rgb(92, 186, 138);\n"
+                                 "\n"
+                                 "}\n"
+                                 "\n"
+                                 "\n"
+                                 "QGroupBox{\n"
+                                 "border:none;\n"
+                                 "}")
         self.frame.setFrameShape(QtWidgets.QFrame.Box)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -78,8 +78,8 @@ class Ui_LoginForm(object):
         self.label_2 = QtWidgets.QLabel(self.groupBox)
         self.label_2.setGeometry(QtCore.QRect(50, 160, 311, 81))
         self.label_2.setStyleSheet("color: #7E8BA3;\n"
-"font: 44px \"Helvetica Neue\", sans-serif;\n"
-"margin: 0px 0px 16px;")
+                                   "font: 44px \"Helvetica Neue\", sans-serif;\n"
+                                   "margin: 0px 0px 16px;")
         self.label_2.setObjectName("label_2")
         self.text_Sifre = QtWidgets.QLineEdit(self.groupBox)
         self.text_Sifre.setGeometry(QtCore.QRect(40, 330, 336, 42))
@@ -107,7 +107,7 @@ class Ui_LoginForm(object):
         font.setPointSize(14)
         self.check_kontrol.setFont(font)
         self.check_kontrol.setStyleSheet("color: rgb(255, 255, 255);\n"
-"")
+                                         "")
         self.check_kontrol.setObjectName("check_kontrol")
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
 
@@ -126,4 +126,6 @@ class Ui_LoginForm(object):
         self.text_kullaniciAdi.setPlaceholderText(_translate("LoginForm", "Kullanıcı Adı"))
         self.btn_kayit.setText(_translate("LoginForm", "KAYIT OL"))
         self.check_kontrol.setText(_translate("LoginForm", "Admin Giriş"))
+
+
 import resoruces_rc

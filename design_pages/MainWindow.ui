@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1361</width>
+    <width>1320</width>
     <height>613</height>
    </rect>
   </property>
@@ -79,7 +79,7 @@ QTableWidget::item {
      <rect>
       <x>800</x>
       <y>120</y>
-      <width>571</width>
+      <width>521</width>
       <height>471</height>
      </rect>
     </property>
@@ -271,7 +271,7 @@ QTableWidget::item {
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adı Soyadı :&lt;/p&gt;&lt;p&gt;İşçi No :&lt;/p&gt;&lt;p&gt;Vardiyası :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_adiSoyadi">
+    <widget class="QLabel" name="label_isci_adiSoyadi">
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -289,7 +289,7 @@ QTableWidget::item {
       <string>Adı Soyadı</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_isciNo">
+    <widget class="QLabel" name="label_isci_isciNo">
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -307,7 +307,7 @@ QTableWidget::item {
       <string>İşçi No</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_girilenVardya">
+    <widget class="QLabel" name="label_isci_girilenVardya">
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -347,13 +347,88 @@ QTableWidget::item {
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="labelGirisCikis_5">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>0</y>
+       <width>171</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0,0,0,0%)</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kullanıcı Adı :&lt;/p&gt;&lt;p&gt;Kullanıcı Adı - Soyadı :&lt;/p&gt;&lt;p&gt;Yönetici Durumu:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_username">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>10</y>
+       <width>131</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Adı Soyadı</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_name_lastname">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>40</y>
+       <width>131</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>User Adı Soyadı</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_durum">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>70</y>
+       <width>131</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Durum</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="ders_info">
     <property name="geometry">
      <rect>
       <x>800</x>
       <y>0</y>
-      <width>551</width>
+      <width>521</width>
       <height>120</height>
      </rect>
     </property>
@@ -430,7 +505,7 @@ QTableWidget::item {
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>5</y>
+       <y>10</y>
        <width>231</width>
        <height>30</height>
       </rect>
@@ -451,7 +526,7 @@ QTableWidget::item {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1361</width>
+     <width>1320</width>
      <height>21</height>
     </rect>
    </property>

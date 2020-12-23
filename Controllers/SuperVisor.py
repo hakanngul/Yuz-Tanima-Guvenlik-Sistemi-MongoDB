@@ -1,31 +1,32 @@
 from Interfaces.ISuperVisor import ISuperVisor
 from Interfaces.IPerson import IPerson
 from Database.DataBaseConnection import CreateConnection
-import mysql.connector
 
 
-class SuperVisor(ISuperVisor, IPerson):
+class SuperVisor(IPerson, ISuperVisor):
 
-    def __init__(self):
+    def __init__(self, username=None, password=None):
         super(SuperVisor).__init__()
+        self.username = username
+        self.password = password
 
-    def register(self):
-        import uuid
-        cnx, cursor = CreateConnection()
-        userid = uuid.uuid4().hex
-        sql = "INSERT INTO kisi(id,full_name,username,password,email,phone,user_role)VALUES (%s,%s,%s,%s,%s,%s,%s)"
-        data = (userid, self.full_name, self.username, self.password, self.email, self.phone, self.user_role)
-        print(data)
-        try:
-            cursor.execute(sql, data)
-            cnx.commit()
-            print(f'{cursor.rowcount} Kayıt Eklendi')
+    def save(self):
+        sql = {
+            "full_name": self.full_name,
+            "username": self.username,
+            "password": self.password,
+            "email": self.email,
+            "phone": self.phone,
+            "user_role": self.user_role
+        }
+        # print(sql)
+        db = CreateConnection()
+        res = db["users"].insert_one(sql)
+        if res:
+            print(f'{self.full_name} user is created')
             return True
-        except mysql.connector.Error as err:
-            print("Error =>", err)
+        else:
             return False
-        finally:
-            cnx.close()
 
     def createWorker(self):
         pass

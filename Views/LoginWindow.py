@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from ui_pages.ui_login import Ui_LoginForm
 from Controllers.CommonMethods import CommonMethods
+from Controllers.SuperVisor import SuperVisor
+from Controllers.Admin import Admin
 
 
 class LoginFormWindow(QWidget):
@@ -8,8 +10,9 @@ class LoginFormWindow(QWidget):
         super().__init__()
         self.ui = Ui_LoginForm()
         self.ui.setupUi(self)
-        self.ui.text_kullaniciAdi.setText("yusuf")
+        self.ui.text_kullaniciAdi.setText("admin")
         self.ui.text_Sifre.setText("123123")
+
         self.initSlots()
 
     def initSlots(self):
@@ -21,25 +24,42 @@ class LoginFormWindow(QWidget):
         password = self.ui.text_Sifre.text()
         userCheck = CommonMethods()
         if self.ui.check_kontrol.isChecked():
-            print("test")
-            res = userCheck.adminLogin(username, password)
+            res = userCheck.Login(username, password, True)
             if res:
                 QMessageBox.information(self, "State", "Giriş Başarılı")
-                self.goToMainPage(userType=True)
+                self.goToMainPage(userType=True, user=res)
             else:
-                QMessageBox.information(self, "State", "Giriş Başarılı")
-                self.goToMainPage(userType=False)
+                QMessageBox.critical(self, "State", "Giriş Başarısız")
         else:
-            userCheck.supervisorLogin(username, password)
+            res = userCheck.Login(username, password, False)
+            if res:
+                QMessageBox.information(self, "State", "Giriş Başarılı")
+                self.goToMainPage(userType=False, user=res)
+            else:
+                QMessageBox.critical(self, "State", "Giriş Başarısız")
 
-    def goToMainPage(self, userType):
+    def goToMainPage(self, userType, user):
         if userType:
-            from MainWindow import MainWindowForm
-            self.newWindow = MainWindowForm()
+            from SuperVisor import SuperVisorWindow
+            admin = Admin()
+            admin.id = user['_id']
+            admin.full_name = user['full_name']
+            admin.username = user['username']
+            admin.email = user['email']
+            admin.phone = user['phone']
+            admin.user_role = user['user_role']
+            self.newWindow = SuperVisorWindow(Admin=admin)
             self.destroy(destroyWindow=True)
         else:
             from SuperVisor import SuperVisorWindow
-            self.newWindow = SuperVisorWindow()
+            supervisor = SuperVisor()
+            supervisor.id = user['_id']
+            supervisor.full_name = user['full_name']
+            supervisor.username = user['username']
+            supervisor.email = user['email']
+            supervisor.phone = user['phone']
+            supervisor.user_role = user['user_role']
+            self.newWindow = SuperVisorWindow(SuperVisor=supervisor)
             self.destroy(destroyWindow=True)
 
     def RegisterFormWindow(self):

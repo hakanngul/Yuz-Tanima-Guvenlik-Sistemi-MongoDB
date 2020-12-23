@@ -1,84 +1,67 @@
 from Interfaces.ICommonMethods import ICommonMethods
-from Database.DataBaseConnection import CreateConnection
+from Database import DataBaseConnection
 import mysql.connector
+from Database.test import CreateConnection
 
 
 class CommonMethods(ICommonMethods):
 
-    def adminLogin(self, username, password):
-        cnx, cursor = CreateConnection()
-        print("test2")
-        sql = "Select * from admin where username=%s and password=%s"
-        try:
-            cursor.execute(sql, (username, password))
-            result = cursor.fetchone()
+    def Login(self, username, password, userType=False):
+        db = CreateConnection()["users"]
+        if userType:
+            result = db.find_one({
+                "username": {"$eq": username},
+                "password": {"$eq": password},
+                "user_role": {"$eq": "admin"}
+            })
             if result:
                 return result
-            return False
-        except mysql.connector.Error as err:
-            print("Error =>", err)
-            print("Test 3")
-            return err
-        finally:
-            cnx.close()
+            else:
+                return False
+        else:
+            result = db.find_one({
+                "username": {"$eq": username},
+                "password": {"$eq": password}
+            })
+            if result:
+                return result
+            else:
+                return False
 
-    def supervisorLogin(self, username, password):
-        cnx, cursor = CreateConnection()
-        sql = "Select * from supervisor where username=%s and password=%s"
-        try:
-            cursor.execute(sql, (username, password))
-            result = cursor.fetchone()
-            if result:
-                return result
-            return False
-        except mysql.connector.Error as err:
-            print("Error =>", err)
-            print("Test 3")
-            return err
-        finally:
-            cnx.close()
+    def checkAdmin(self):
+        pass
 
     @staticmethod
     def checkUserName(username):
-        cnx, cursor = CreateConnection()
-        print("***")
-        print(username)
-        print("***")
-        sql = "Select * from supervisor where username=%s"
-        try:
-            print("Test checkusername")
-            cursor.execute(sql, (username,))
-            result = cursor.fetchone()
-            if result:
+        if username is not None:
+            db = CreateConnection()["users"]
+            result = db.find_one({
+                "username": {
+                    "$eq": username
+                }
+            })
+            if result is not None:
                 return True
             else:
                 return False
-        except mysql.connector.Error as err:
-            print("Error =>", err)
-            return err
-        finally:
-            cnx.close()
+        else:
+            print("Username gelmedi")
 
     @staticmethod
     def checkEmail(email):
-        cnx, cursor = CreateConnection()
-        print("***")
-        print(email)
-        print("***")
-        sql = "Select * from supervisor where email=%s"
-        try:
-            print("Test check Email")
-            cursor.execute(sql, (email,))
-            result = cursor.fetchone()
-            if result:
+        if email is not None:
+            db = CreateConnection()["users"]
+            result = db.find_one({
+                "email": {
+                    "$eq": email
+                }
+            })
+            if result is not None:
                 return True
             else:
                 return False
-        except mysql.connector.Error as err:
-            print("Error =>", err)
-            return err
-        finally:
-            cnx.close()
+        else:
+            print("Username gelmedi")
 
     def logout(self):
         pass
