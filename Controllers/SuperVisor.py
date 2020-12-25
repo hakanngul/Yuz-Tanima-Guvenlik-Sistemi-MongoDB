@@ -17,7 +17,8 @@ class SuperVisor(ISuperVisor):
             "password": self.password,
             "email": self.email,
             "phone": self.phone,
-            "user_role": self.user_role
+            "user_role": self.user_role,
+            "vardiya": self.vardiya
         }
         # print(sql)
         db = CreateConnection()
@@ -42,6 +43,7 @@ class SuperVisor(ISuperVisor):
         self.user_role = user.get('user_role')
         self.phone = user.get('phone')
         self.email = user.get('email')
+        self.vardiya = user.get('vardiya')
 
     @staticmethod
     def getSupervisor2(_id):

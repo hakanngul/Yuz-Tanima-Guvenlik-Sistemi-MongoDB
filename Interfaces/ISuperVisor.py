@@ -8,6 +8,7 @@ class ISuperVisor(IPerson):
         self.username = kwargs.get('username')
         self.password = kwargs.get('password')
         self.user_role = "admin"
+        self.vardiya = kwargs.get('vardiya')
 
     def save(self): raise NotImplementedError
 

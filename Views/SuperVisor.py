@@ -2,25 +2,20 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from ui_pages.ui_vardiyasorumlusu import Ui_VardiyaSorumlusuMainWindow
 from Controllers.SuperVisor import SuperVisor
 from Controllers.Admin import Admin
-from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtGui import QPixmap
 import os
 
 
 class SuperVisorWindow(QMainWindow):
-    def __init__(self, SuperVisor: SuperVisor = None, Admin: Admin = None):
+    def __init__(self, SuperVisor: SuperVisor):
         super().__init__()
         self.ui = Ui_VardiyaSorumlusuMainWindow()
         self.ui.setupUi(self)
-        if SuperVisor:
-            self.person = SuperVisor
-        else:
-            self.person = Admin
-
+        self.person = SuperVisor
         print("***")
         print(self.person.full_name)
         self.ui_settings()
         self.setImage()
-
         self.show()
 
     def setImage(self):
@@ -35,6 +30,9 @@ class SuperVisorWindow(QMainWindow):
     def ui_settings(self):
         self.ui.text_AdSoyad.setEnabled(False)
         self.ui.text_AdSoyad.setText(self.person.full_name)
+        self.ui.text_Vardiyasi.setText(self.person.vardiya)
+        self.ui.cmb_Model.setEnabled(False)
+        self.ui.cmb_Metrik.setEnabled(False)
 
 
 if __name__ == '__main__':

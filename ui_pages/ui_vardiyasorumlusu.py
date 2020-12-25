@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_VardiyaSorumlusuMainWindow(object):
     def setupUi(self, VardiyaSorumlusuMainWindow):
-        VardiyaSorumlusuMainWindow.setObjectName("HocaEkraniMainWindow")
+        VardiyaSorumlusuMainWindow.setObjectName("SupervisorMainWindow")
         VardiyaSorumlusuMainWindow.resize(510, 600)
         self.centralwidget = QtWidgets.QWidget(VardiyaSorumlusuMainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -142,9 +142,7 @@ class Ui_VardiyaSorumlusuMainWindow(object):
         self.cmb_Metrik.addItem("")
         self.cmb_Metrik.addItem("")
         self.cmb_Metrik.addItem("")
-        self.cmb_Vardiyalar = QtWidgets.QComboBox(self.frame)
-        self.cmb_Vardiyalar.setGeometry(QtCore.QRect(12, 326, 471, 44))
-        self.cmb_Vardiyalar.setObjectName("cmb_Vardiyalar")
+
         self.btn_login = QtWidgets.QPushButton(self.frame)
         self.btn_login.setGeometry(QtCore.QRect(110, 470, 257, 40))
         self.btn_login.setStyleSheet("")
@@ -202,8 +200,6 @@ class Ui_VardiyaSorumlusuMainWindow(object):
         self.text_Vardiyasi.setPlaceholderText(_translate("VardiyaSorumlusuMainWindow", "Vardiyası"))
         self.cmb_Model.setItemText(0, _translate("VardiyaSorumlusuMainWindow", "VGG-Face"))
         self.cmb_Metrik.setItemText(0, _translate("VardiyaSorumlusuMainWindow", "cosine"))
-        self.cmb_Metrik.setItemText(1, _translate("VardiyaSorumlusuMainWindow", "euclidean"))
-        self.cmb_Metrik.setItemText(2, _translate("VardiyaSorumlusuMainWindow", "euclidean_l2"))
         self.btn_login.setText(_translate("VardiyaSorumlusuMainWindow", "Vardiyayı YÜKLE"))
         self.image_vardiyaSorumlusu.setText(_translate("VardiyaSorumlusuMainWindow", "TextLabel"))
         self.menuEkle.setTitle(_translate("VardiyaSorumlusuMainWindow", "Ekle"))
