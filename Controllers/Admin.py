@@ -1,14 +1,11 @@
 from Interfaces.IAdmin import IAdmin
-from Interfaces.IPerson import IPerson
 from Database.DataBaseConnection import CreateConnection
 
 
-class Admin(IAdmin, IPerson):
+class Admin(IAdmin):
 
-    def __init__(self, username=None, password=None):
+    def __init__(self):
         super(Admin).__init__()
-        self.username = username
-        self.password = password
 
     def save(self):
         sql = {
@@ -31,19 +28,34 @@ class Admin(IAdmin, IPerson):
         except Exception as err:
             print(err)
 
-    def createUser(self):
-        pass
+    def getSupervisor(self):
+        user = CreateConnection()["users"].find_one({
+            "username": {"$eq": self.username},
+            "password": {"$eq": self.password},
+            "user_role": {"$eq": "admin"}
+        })
+        return user
 
-    def editUser(self):
-        pass
+    def addUserToSuperVisorShift(self, data):
+        from Controllers.SuperVisor import SuperVisor
+        user = SuperVisor()
+        # getSupervisor2(data[0])
 
-    def deleteUser(self):
-        pass
+        shiftCollection = CreateConnection()["shift"]
+        res = shiftCollection.find_one_and_update({
+            "name": {"$eq": data[-1]}
+        }, {
+            '$set': {
+                "supervisor": user._id
+            }
+        })
 
-    def addUserToSuperVisorShift(self):
-        pass
+        if res:
+            return True
+        else:
+            return False
 
-    def removeUserToSuperVisorShift(self):
+    def removeUserToSuperVisorShift(self, data):
         pass
 
     def viewReport(self):

@@ -1,14 +1,14 @@
 from Interfaces.ISuperVisor import ISuperVisor
-from Interfaces.IPerson import IPerson
 from Database.DataBaseConnection import CreateConnection
+from bson.objectid import ObjectId
 
 
-class SuperVisor(IPerson, ISuperVisor):
+class SuperVisor(ISuperVisor):
 
-    def __init__(self, username=None, password=None):
+    def __init__(self, username):
         super(SuperVisor).__init__()
         self.username = username
-        self.password = password
+        self.getSupervisor()
 
     def save(self):
         sql = {
@@ -28,16 +28,53 @@ class SuperVisor(IPerson, ISuperVisor):
         else:
             return False
 
-    def createWorker(self):
+    def getSupervisor(self):
+        print(self.username)
+        user = CreateConnection()["users"].find_one({
+            "username": {"$eq": self.username}
+            # "password": {"$eq": self.password},
+            # "user_role": {"$eq": "supervisor"}
+        })
+        print(user)
+        print(user.get('user_role'))
+        self.id = user.get('_id')
+        self.full_name = user.get('full_name')
+        self.user_role = user.get('user_role')
+        self.phone = user.get('phone')
+        self.email = user.get('email')
+
+    @staticmethod
+    def getSupervisor2(_id):
+        user = CreateConnection()["users"].find_one({
+            "_id": {"$eq": ObjectId(_id)}
+        })
+        return user
+
+    def createWorker(self, data):
+        # TODO : İşçi oluşturma işlemi Worker Classında yapılmaktadır.
         pass
 
-    def editWorker(self):
+    def createFolderForWorker(self, tcno):
+        # TODO : return işçi klasör yolunu döndürecek
+        import os
+        from pathlib import Path
+        home = str(Path.home())
+        folderPath = os.path.isfile(home + '/.faceAnalytics/program/worker/')
+        if os.path.isfile(home + '/.faceAnalytics/program/worker'):
+            workerPath = folderPath + tcno
+            os.mkdir(workerPath)
+            return workerPath
+        else:
+            print("Oluşmadı")
+            return False
+
+    def editWorker(self, data):
         pass
 
-    def deleteWorker(self):
+    def deleteWorker(self, data):
         pass
 
-    def addWorkerToShift(self):
+    def addWorkerToShift(self, data):
         pass
 
     def removeWorkerFromShift(self):

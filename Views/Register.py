@@ -64,6 +64,7 @@ class RegisterWindow(QWidget):
         from Controllers.CommonMethods import CommonMethods
         newSupervisor = SuperVisor()
         checkParameters = CommonMethods()
+
         newSupervisor.full_name = data[0]
         newSupervisor.user_role = "supervisor"
         newSupervisor.username = data[2]

@@ -1,12 +1,7 @@
-import os
+from Controllers.SuperVisor import SuperVisor
 
-path = os.getcwd().split("\\")[:-1]
+x = SuperVisor(username="test")
 
-print(path)
 
-birlestir = ""
-# for i in path:
-#    birlestir += i +"/"
 
-birlestir = '/'.join(path)
-print(birlestir)
+print(x)

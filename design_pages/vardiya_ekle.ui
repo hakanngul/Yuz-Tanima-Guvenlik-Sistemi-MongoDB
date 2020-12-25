@@ -178,6 +178,12 @@ margin: 0px 0px 16px;</string>
       <height>42</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -296,6 +302,8 @@ margin: 0px 0px 16px;</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../ui_pages/resoruces.qrc"/>
+ </resources>
  <connections/>
 </ui>

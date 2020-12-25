@@ -16,8 +16,11 @@ class SuperVisorWindow(QMainWindow):
         else:
             self.person = Admin
 
+        print("***")
+        print(self.person.full_name)
         self.ui_settings()
         self.setImage()
+
         self.show()
 
     def setImage(self):
@@ -39,6 +42,11 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     app.setStyle("fusion")
-    vsorumlu = SuperVisorWindow()
+    # newUser = SuperVisor("test", "123123").getSupervisor()
+    newUser = SuperVisor(username="test")
+    newAdmin = Admin()
+    newAdmin.username = "admin"
+    newAdmin.password = "123123"
+    vsorumlu = SuperVisorWindow(SuperVisor=newUser)
     vsorumlu.show()
     sys.exit(app.exec_())
