@@ -5,26 +5,30 @@ from bson.objectid import ObjectId
 
 class SuperVisor(ISuperVisor):
 
-    def __init__(self, username):
+    def __init__(self, username=None):
         super(SuperVisor).__init__()
-        self.username = username
-        self.getSupervisor()
+        if username is not None:
+            self.username = username
+            self.getSupervisor()
 
     def save(self):
-        sql = {
+        print("save")
+        print(self.full_name)
+        print(self.user_role)
+
+        print(self.username)
+        collection = CreateConnection()["users"]
+        print(collection)
+        response = collection.insert_one({
             "full_name": self.full_name,
             "username": self.username,
             "password": self.password,
             "email": self.email,
-            "phone": self.phone,
-            "user_role": self.user_role,
-            "vardiya": self.vardiya
-        }
-        # print(sql)
-        db = CreateConnection()
-        res = db["users"].insert_one(sql)
-        if res:
-            print(f'{self.full_name} user is created')
+            "user_role": self.user_role
+        })
+        print("kayıt ")
+        print(response)
+        if response is not None:
             return True
         else:
             return False
@@ -44,6 +48,16 @@ class SuperVisor(ISuperVisor):
         self.phone = user.get('phone')
         self.email = user.get('email')
         self.vardiya = user.get('vardiya')
+
+    @staticmethod
+    def getAllSuperVisor():
+        users = CreateConnection()["users"].find({
+            "user_role": {"$eq": "supervisor"}
+        })
+        if users is not None:
+            return list(users)
+        else:
+            return False
 
     @staticmethod
     def getSupervisor2(_id):
@@ -68,6 +82,20 @@ class SuperVisor(ISuperVisor):
             return workerPath
         else:
             print("Oluşmadı")
+            return False
+
+    @staticmethod
+    def editSupervisorShift(id, vardiya):
+        user = CreateConnection()["users"].find_one_and_update({
+            "_id": {"$eq": id}
+        },
+            {
+                "$set": {'vardiya': vardiya}
+            })
+
+        if user is not None:
+            return True
+        else:
             return False
 
     def editWorker(self, data):

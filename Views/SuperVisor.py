@@ -12,11 +12,13 @@ class SuperVisorWindow(QMainWindow):
         self.ui = Ui_VardiyaSorumlusuMainWindow()
         self.ui.setupUi(self)
         self.person = SuperVisor
-        print("***")
-        print(self.person.full_name)
         self.ui_settings()
         self.setImage()
+        self.initSlots()
         self.show()
+
+    def initSlots(self):
+        self.ui.action_VardiyaEkle.triggered.connect(self.getVardiyaEkleWindow)
 
     def setImage(self):
         print("test")
@@ -26,6 +28,10 @@ class SuperVisorWindow(QMainWindow):
         print(imgPath)
         self.ui.image_vardiyaSorumlusu.setPixmap(QPixmap(imgPath).scaled(263, 211))
         self.ui.image_vardiyaSorumlusu.setScaledContents(True)
+
+    def getVardiyaEkleWindow(self):
+        from AddShift import AddShiftWindow
+        self.vardiyaEkle = AddShiftWindow()
 
     def ui_settings(self):
         self.ui.text_AdSoyad.setEnabled(False)

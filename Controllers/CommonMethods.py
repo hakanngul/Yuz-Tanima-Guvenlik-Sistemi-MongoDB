@@ -1,7 +1,6 @@
 from Interfaces.ICommonMethods import ICommonMethods
-from Database import DataBaseConnection
-import mysql.connector
-from Database.test import CreateConnection
+
+from Database.DataBaseConnection import CreateConnection
 
 
 class CommonMethods(ICommonMethods):
@@ -40,6 +39,7 @@ class CommonMethods(ICommonMethods):
                     "$eq": username
                 }
             })
+            print(f'checkUserName {result}')
             if result is not None:
                 return True
             else:
@@ -56,6 +56,7 @@ class CommonMethods(ICommonMethods):
                     "$eq": email
                 }
             })
+            print(f'checkEmail {result}')
             if result is not None:
                 return True
             else:

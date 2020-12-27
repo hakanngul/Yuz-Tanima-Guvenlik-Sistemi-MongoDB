@@ -52,10 +52,10 @@ class LoginFormWindow(QWidget):
             self.destroy(destroyWindow=True)
         else:
             from SuperVisor import SuperVisorWindow
-            supervisor = SuperVisor()
+            supervisor = SuperVisor(user["username"])
             supervisor.id = user['_id']
             supervisor.full_name = user['full_name']
-            supervisor.username = user['username']
+            # supervisor.username = user['username']
             supervisor.email = user['email']
             supervisor.phone = user['phone']
             supervisor.user_role = user['user_role']

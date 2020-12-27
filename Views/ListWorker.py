@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QWidget
-from ui_pages.isci_listesi import Ui_isciListesi
+from ui_pages.ui_isci_listesi import Ui_isciListesi
 
 
 class ListWorkerWindow(QWidget):

@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication , QWidget
-from ui_pages.isci_duzenle import Ui_IsciDuzenleForm
+from ui_pages.ui_isci_duzenle import Ui_IsciDuzenleForm
 
 
 class EditWorkerWindow(QWidget):

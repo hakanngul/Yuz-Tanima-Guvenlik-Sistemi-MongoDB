@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QMainWindow
 from PyQt5.QtCore import QCoreApplication
 from ui_pages.ui_kayit import Ui_VardiyaSorumluKayit
 from Database.DataBaseConnection import CreateConnection
+from secrets import compare_digest
 
 
 class RegisterWindow(QWidget):
@@ -22,6 +23,8 @@ class RegisterWindow(QWidget):
         })
         if result:
             self.clearForm()
+        else:
+            return None
 
     def testButton(self):
         test = self.ui.cmb_vardiya.currentText()
@@ -49,7 +52,7 @@ class RegisterWindow(QWidget):
         phone = "5317328099"
         email = self.ui.txt_mail.text()
         data = (full_name, userType, username, password, phone, email)
-        if checkPassword == password:
+        if compare_digest(checkPassword, password):
             if userType == "Admin":
                 self.registerAdminFromOperations(data)
             elif userType == "SuperVisor":
@@ -64,7 +67,6 @@ class RegisterWindow(QWidget):
         from Controllers.CommonMethods import CommonMethods
         newSupervisor = SuperVisor()
         checkParameters = CommonMethods()
-
         newSupervisor.full_name = data[0]
         newSupervisor.user_role = "supervisor"
         newSupervisor.username = data[2]
@@ -72,17 +74,19 @@ class RegisterWindow(QWidget):
         newSupervisor.phone = data[4]
         newSupervisor.email = data[5]
         checkUserName = checkParameters.checkUserName(newSupervisor.username)
+        print(f'checkusername : {checkUserName}')
         checkEmail = checkParameters.checkEmail(newSupervisor.email)
+        print(f'checkEmail : {checkEmail}')
         if checkUserName:
             QMessageBox.warning(self, "Username Kontrol", f'{newSupervisor.username} kullanılmaktadır.')
         elif checkEmail:
             QMessageBox.warning(self, "Email Kontrol", f'{newSupervisor.email} kullanılmaktadır.')
         else:
             result = newSupervisor.save()
+            print(result)
             if result:
                 QMessageBox.information(self, "Kayıt Durumu", "Kayıt Başarlı Oldu!")
                 self.clearForm()
-
             else:
                 QMessageBox.critical(self, "Kayıt Durumu", "Kayıt Başarısız Oldu!")
 
