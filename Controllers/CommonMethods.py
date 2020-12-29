@@ -2,6 +2,8 @@ from Interfaces.ICommonMethods import ICommonMethods
 
 from Database.DataBaseConnection import CreateConnection
 
+from bson.objectid import ObjectId
+
 
 class CommonMethods(ICommonMethods):
 
@@ -29,6 +31,39 @@ class CommonMethods(ICommonMethods):
 
     def checkAdmin(self):
         pass
+
+    @staticmethod
+    def vardiya_degistir(yeniSorumlu, degisecek_vardiya):
+        global x
+        print(yeniSorumlu)
+        print(type(yeniSorumlu))
+        print(degisecek_vardiya)
+
+        user = CreateConnection()["users"]
+        vardiya = CreateConnection()["vardiya"]
+        eskiSorumlu = vardiya.find_one({
+            "vardiya_adi": degisecek_vardiya
+        })["vardiya_sorumlu"]
+        print(eskiSorumlu)
+        if len(eskiSorumlu) > 20:
+            x = user.update_one({
+                "_id": ObjectId(eskiSorumlu)
+            }, {
+                "$set": {"vardiya": "null"}
+            })
+            print(x)
+        y = user.update_one({
+            "_id": ObjectId(yeniSorumlu)
+        }, {
+            "$set": {"vardiya": degisecek_vardiya}
+        })
+        print(y)
+        z = vardiya.update_one({
+            "vardiya_adi": degisecek_vardiya
+        }, {
+            "$set": {"vardiya_sorumlu": yeniSorumlu}
+        })
+        print(z)
 
     @staticmethod
     def checkUserName(username):

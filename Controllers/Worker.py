@@ -6,10 +6,11 @@ from bson.objectid import ObjectId
 class Worker(IWorker):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.collection = CreateConnection()["workers"]
+        self.collection = CreateConnection()["isciler"]
 
     def save(self):
         # TODO: TCKNO - Adı Soyadı - Vardiyası
+
         sql = {
             "TcNo": self.tcNo,
             "full_name": self.full_name,
@@ -18,7 +19,7 @@ class Worker(IWorker):
             "imagePath": self.imagePath
         }
         res = self.collection.insert_one(sql)
-        if res:
+        if res is not None:
             print(f'{self.full_name} user is created')
             return True
         else:
@@ -46,9 +47,9 @@ class Worker(IWorker):
         else:
             return False
 
-    def getWorker(self, _id):
+    def getWorker(self, TcNo):
         x = self.collection.find_one({
-            '_id': {"$eq": ObjectId(_id)}
+            'TcNo': {"$eq": TcNo}
         })
         if x:
             self._id = x.get('_id')

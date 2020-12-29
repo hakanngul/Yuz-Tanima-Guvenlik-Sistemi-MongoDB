@@ -1,5 +1,4 @@
-from IPerson import IPerson
-from bson.objectid import ObjectId
+from Interfaces.IPerson import IPerson
 
 
 class IWorker(IPerson):
