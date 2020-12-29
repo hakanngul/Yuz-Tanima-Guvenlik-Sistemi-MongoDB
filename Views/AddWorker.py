@@ -18,6 +18,14 @@ class AddWorkerWindow(QMainWindow):
         self.ui.btn_kayit.clicked.connect(self.isciEkle)
         self.home = str(Path.home())
         self.home = self.home + "/.faceAnalytics/program/worker/"
+        self.UI_Settings()
+
+    def UI_Settings(self):
+        # self.ui.actionStart_Camera.setEnabled(False)
+        self.ui.actionStop_Camera.setEnabled(False)
+        self.ui.btn_resimCek.setEnabled(False)
+        self.ui.btn_kayit.clicked.connect(self.isciEkle)
+        self.ui.actionStart_Camera.triggered.connect(self.startCam)
 
     def isciKontrol(self):
         isciler = CreateConnection()["isciler"].find_one({
@@ -42,13 +50,17 @@ class AddWorkerWindow(QMainWindow):
         if self.isciKontrol():
             yeni_isci = Worker()
             yeni_isci.tcNo = self.ui.txt_TcNo.text()
-            yeni_isci.full_name = self.ui.txt_Adi + " " + self.ui.txt_Soyadi
-            yeni_isci.imagePath = self.home + self.yeni_isci.tcNo
+            yeni_isci.full_name = self.ui.txt_Adi.text() + " " + self.ui.txt_Soyadi.text()
+            yeni_isci.imagePath = self.home + yeni_isci.tcNo
             yeni_isci.vardiya = self.ui.cmb_Vardiyas.currentText()
+            print("asdasdas")
             response = yeni_isci.save()
+            print("***xx")
+
             if response:
                 QMessageBox.information(self, "Bilgi", "Kayıt Başarılı Oldu")
                 QMessageBox.information(self, "Bilgi", "Menüden Kamerayı Açınız")
+                self.ui.actionStart_Camera.setEnabled(True)
             else:
                 QMessageBox.critical(self, "Hata", "Kayıt Başarısız Oldu")
 

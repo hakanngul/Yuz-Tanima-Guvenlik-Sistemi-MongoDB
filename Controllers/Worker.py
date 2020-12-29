@@ -6,19 +6,18 @@ from bson.objectid import ObjectId
 class Worker(IWorker):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.collection = CreateConnection()["isciler"]
 
     def save(self):
         # TODO: TCKNO - Adı Soyadı - Vardiyası
-
-        sql = {
+        print(self.full_name)
+        self.collection = CreateConnection()["isciler"]
+        res = self.collection.insert_one({
             "TcNo": self.tcNo,
             "full_name": self.full_name,
             "vardiya": self.vardiya,
             "user_role": self.user_role,
             "imagePath": self.imagePath
-        }
-        res = self.collection.insert_one(sql)
+        })
         if res is not None:
             print(f'{self.full_name} user is created')
             return True
