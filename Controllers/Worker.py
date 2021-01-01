@@ -41,8 +41,45 @@ class Worker(IWorker):
         else:
             return False
 
-    def addShift(self):
-        pass
+    def addShift(self, eskiVardiya, YeniVardiya):
+        # TODO: vardiyalar tablsounda eski vardiya durumunu sil
+        # TODO: vardiyalar tablosuna işçiyi ekle
+        # TODO: işçide vardiya durumunu güncelle
+        print("Eski Vardiya ", eskiVardiya)
+        print(f'Yeni Vardiya', YeniVardiya)
+        print(self.id)
+        db = CreateConnection()["vardiya"]
+        isciler = db.find_one({
+            "vardiya_adi": eskiVardiya
+        })['vardiya_iscileri']
+        yeniVardiya = db.find_one({
+            "vardiya_adi": YeniVardiya
+        })['vardiya_iscileri']
+        # if eskiVardiya != YeniVardiya:
+
+        if self.id in isciler:
+            print("eski tablo güncelleme")
+            isciler.remove(self.id)
+            print("isciler")
+            print("")
+            db.update_one({
+                "vardiya_adi": eskiVardiya
+            }, {"$set": {"vardiya_iscileri": isciler}})
+        print("1x")
+        if self.id not in yeniVardiya:
+            print("yeni tablo güncelleme")
+            yeniVardiya.append(self.id)
+            db.update_one({
+                "vardiya_adi": YeniVardiya
+            }, {"$set": {"vardiya_iscileri": yeniVardiya}})
+        print("2x")
+        if self.vardiya != YeniVardiya:
+            print()
+            self.vardiya = YeniVardiya
+            self.collection.update_one({
+                "_id": self.id
+            }, {"$set": {"vardiya": self.vardiya}})
+        return True
 
     def delete(self):
         res = self.collection.find_one_and_delete({
@@ -64,8 +101,6 @@ class Worker(IWorker):
         self.vardiya = isci['vardiya']
         self.user_role = isci['user_role']
         self.imagePath = isci['imagePath']
-
-
 
     def getAllWorker(self):
         return list(self.collection.find())
