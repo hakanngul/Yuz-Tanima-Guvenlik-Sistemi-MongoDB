@@ -13,4 +13,4 @@ class IWorker(IPerson):
 
     def delete(self): raise NotImplementedError
 
-    def getWorker(self, _id): raise NotImplementedError
+    def getWorker(self): raise NotImplementedError

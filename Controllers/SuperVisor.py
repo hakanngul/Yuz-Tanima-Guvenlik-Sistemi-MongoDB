@@ -12,22 +12,17 @@ class SuperVisor(ISuperVisor):
             self.getSupervisor()
 
     def save(self):
-        print("save")
-        print(self.full_name)
-        print(self.user_role)
-
-        print(self.username)
         collection = CreateConnection()["users"]
-        print(collection)
+        self.user_role = "supervisor"
+        print(self.user_role)
         response = collection.insert_one({
             "full_name": self.full_name,
             "username": self.username,
             "password": self.password,
             "email": self.email,
-            "user_role": self.user_role
+            "user_role": self.user_role,
+            "imagePath": self.imagePath+'/'
         })
-        print("kayıt ")
-        print(response)
         if response is not None:
             return True
         else:
@@ -37,8 +32,6 @@ class SuperVisor(ISuperVisor):
         print(self.username)
         user = CreateConnection()["users"].find_one({
             "username": {"$eq": self.username}
-            # "password": {"$eq": self.password},
-            # "user_role": {"$eq": "supervisor"}
         })
         print(user)
         print(user.get('user_role'))
@@ -66,17 +59,38 @@ class SuperVisor(ISuperVisor):
         })
         return user
 
+    def checkUsername(self):
+        if self.username is not None:
+            db = CreateConnection()["users"]
+            res = db.find_one({
+                "username": {"$eq": self.username}
+            })
+            if res is not None:
+                return True
+            else:
+                return False
+
+    def checkEmail(self):
+        if self.email is not None:
+            db = CreateConnection()["users"]
+            res = db.find_one({
+                "email": {"$eq": self.email}
+            })
+            if res is not None:
+                return True
+            else:
+                return False
+
     def createWorker(self, data):
         # TODO : İşçi oluşturma işlemi Worker Classında yapılmaktadır.
         pass
 
     def createFolderForWorker(self, tcno):
-        # TODO : return işçi klasör yolunu döndürecek
         import os
         from pathlib import Path
         home = str(Path.home())
-        folderPath = os.path.isfile(home + '/.faceAnalytics/program/worker/')
-        if os.path.isfile(home + '/.faceAnalytics/program/worker'):
+        folderPath = os.path.isfile(home + '/.faceAnalytics/program/supervisor/')
+        if os.path.isfile(home + '/.faceAnalytics/program/supervisor'):
             workerPath = folderPath + tcno
             os.mkdir(workerPath)
             return workerPath

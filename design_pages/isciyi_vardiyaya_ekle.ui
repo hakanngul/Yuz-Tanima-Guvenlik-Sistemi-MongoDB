@@ -187,21 +187,6 @@ background: #008bd1
         <height>46</height>
        </rect>
       </property>
-      <item>
-       <property name="text">
-        <string>Sabah</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Akşam</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Gece</string>
-       </property>
-      </item>
      </widget>
      <widget class="QPushButton" name="btn_Ekle">
       <property name="geometry">

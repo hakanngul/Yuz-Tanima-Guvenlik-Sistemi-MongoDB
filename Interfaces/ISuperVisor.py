@@ -7,7 +7,7 @@ class ISuperVisor(IPerson):
         super().__init__(**kwargs)
         self.username = kwargs.get('username')
         self.password = kwargs.get('password')
-        self.user_role = "admin"
+        self.user_role = "supervisor"
         self.vardiya = kwargs.get('vardiya')
 
     def save(self): raise NotImplementedError

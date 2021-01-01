@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Isci_ekleWindow</class>
- <widget class="QMainWindow" name="Isci_ekleWindow">
+ <class>add_SuperVisorWindow</class>
+ <widget class="QMainWindow" name="add_SuperVisorWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>542</width>
-    <height>873</height>
+    <width>537</width>
+    <height>821</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>537</width>
+    <height>821</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>537</width>
+    <height>821</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,7 +29,7 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="ana_widget">
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="_2">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -221,29 +233,30 @@ height:42px;
           <string/>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="5" column="2">
-           <widget class="QComboBox" name="cmb_Vardiyasi">
-            <item>
-             <property name="text">
-              <string>sabah</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>akşam</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>gece</string>
-             </property>
-            </item>
-           </widget>
-          </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>Vardiyası</string>
+             <string>Şifre</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Email</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="txt_Email">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="maxLength">
+             <number>50</number>
+            </property>
+            <property name="placeholderText">
+             <string>Email</string>
             </property>
            </widget>
           </item>
@@ -255,53 +268,55 @@ height:42px;
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="QLineEdit" name="txt_Adi">
+           <widget class="QLineEdit" name="txt_AdiSoyadi">
             <property name="text">
              <string/>
             </property>
+            <property name="maxLength">
+             <number>100</number>
+            </property>
             <property name="placeholderText">
-             <string>adı</string>
+             <string>Adı Soyadı</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="2">
-           <widget class="QLineEdit" name="txt_Soyadi">
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="txt_Username">
             <property name="text">
              <string/>
             </property>
-            <property name="placeholderText">
-             <string>soyadı</string>
+            <property name="maxLength">
+             <number>20</number>
             </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>Soyadı</string>
+            <property name="placeholderText">
+             <string>Username</string>
             </property>
            </widget>
           </item>
           <item row="1" column="0" colspan="2">
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>SupervisorId</string>
+             <string>Kullanıcı Adı</string>
             </property>
            </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>Adı</string>
+             <string>Adı Soyadı</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
-           <widget class="QLineEdit" name="txt_SupervisorId">
-            <property name="text">
-             <string/>
+          <item row="5" column="2">
+           <widget class="QLineEdit" name="txt_Password">
+            <property name="maxLength">
+             <number>20</number>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
             </property>
             <property name="placeholderText">
-             <string>SupervisorId</string>
+             <string>Şifre</string>
             </property>
            </widget>
           </item>
@@ -325,7 +340,7 @@ height:42px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>542</width>
+     <width>537</width>
      <height>21</height>
     </rect>
    </property>
@@ -362,10 +377,9 @@ height:42px;
   </action>
  </widget>
  <tabstops>
-  <tabstop>txt_SupervisorId</tabstop>
-  <tabstop>txt_Adi</tabstop>
-  <tabstop>txt_Soyadi</tabstop>
-  <tabstop>cmb_Vardiyasi</tabstop>
+  <tabstop>txt_Username</tabstop>
+  <tabstop>txt_AdiSoyadi</tabstop>
+  <tabstop>txt_Email</tabstop>
   <tabstop>btn_kayit</tabstop>
  </tabstops>
  <resources/>
