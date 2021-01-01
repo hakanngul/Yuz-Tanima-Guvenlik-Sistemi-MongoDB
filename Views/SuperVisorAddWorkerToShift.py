@@ -13,6 +13,7 @@ class AddWorkerToShiftWindow(QWidget):
         self.ui.txt_Vardiya.setEnabled(False)
         self.ui.txt_KimlikNo.setText("83469768934")
         self.initUiSettings()
+        self.show()
 
     def initUiSettings(self):
         self.ui.btn_ara.clicked.connect(self.isciAra)

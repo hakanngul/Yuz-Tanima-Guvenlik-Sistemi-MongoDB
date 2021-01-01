@@ -19,6 +19,12 @@ class SuperVisorWindow(QMainWindow):
 
     def initSlots(self):
         self.ui.action_VardiyaEkle.triggered.connect(self.getVardiyaEkleWindow)
+        self.ui.action_VardiyayaisciEkle.triggered.connect(self.addWorkerToShift)
+
+
+    def addWorkerToShift(self):
+        from Views.SuperVisorAddWorkerToShift import AddWorkerToShiftWindow
+        self.addwtoShift = AddWorkerToShiftWindow()
 
     def setImage(self):
         print("test")
