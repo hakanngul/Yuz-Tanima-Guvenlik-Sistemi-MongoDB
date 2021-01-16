@@ -1,23 +1,17 @@
-from Controllers.SuperVisor import SuperVisor
+import os
+from pathlib import Path
 
-# test = SuperVisor()
-# users = test.getAllSuperVisor()
-#
-# print(users[0])
-# print(users[0]['_id'])
-# print(type(users[0]['_id']))
+home = str(Path.home()) + "/.faceAnalytics/worker/"
+print(home)
+employees = []
+home2 = "C:/Users/Hakan/.faceAnalytics/program/worker"
+for r, d, f in os.walk(home2):  # r=root, d=directories, f = files
+    for file in f:
+        if '.jpg' in file:
+            exact_path = r + "/" + file
+            employees.append(exact_path)
+        if '.png' in file:
+            exact_path = r + "/" + file
+            employees.append(exact_path)
 
-# res = test.editSupervisorShift(users[0]['_id'], "Gece")
-
-# print(res)
-
-
-from Database.DataBaseConnection import CreateConnection
-
-collection = CreateConnection()["vardiya"]
-vardiya = "Gece"
-collection = collection.find_one({
-    "name": vardiya
-})
-
-print(collection['sorumlu'])
+print(employees)

@@ -14,7 +14,7 @@ class Worker(IWorker):
     def save(self):
         # TODO: TCKNO - Adı Soyadı - Vardiyası
         print(self.full_name)
-
+        print("test")
         res = self.collection.insert_one({
             "TcNo": self.tcNo,
             "full_name": self.full_name,
@@ -89,6 +89,7 @@ class Worker(IWorker):
             return True
         else:
             return False
+
 
     def getWorker(self):
         isci = self.collection.find_one({

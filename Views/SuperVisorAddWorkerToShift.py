@@ -11,7 +11,7 @@ class AddWorkerToShiftWindow(QWidget):
         self.ui.setupUi(self)
         self.ui.btn_Ekle.setEnabled(False)
         self.ui.txt_Vardiya.setEnabled(False)
-        self.ui.txt_KimlikNo.setText("83469768934")
+        self.ui.txt_KimlikNo.setText("12312312312")
         self.initUiSettings()
         self.show()
 

@@ -15,10 +15,11 @@ class AddWorkerWindow(QMainWindow):
         self.ui = Ui_Isci_ekleWindow()
         self.ui.setupUi(self)
         self.ui.txt_TcNo.setValidator(QDoubleValidator())
-        self.home = str(Path.home())
-        self.home = self.home + "/.faceAnalytics/program/worker/"
+        self.home1 = str(Path.home())
+        self.home = self.home1 + "/.faceAnalytics/program/worker/"
         self.UI_Settings()
         self.sayac = 0
+        self.show()
 
     def UI_Settings(self):
         self.ui.actionStart_Camera.setEnabled(False)
@@ -28,6 +29,8 @@ class AddWorkerWindow(QMainWindow):
         self.ui.actionStart_Camera.triggered.connect(self.startCam)
         self.ui.actionStop_Camera.triggered.connect(self.stopCam)
         self.ui.btn_resimCek.clicked.connect(self.resimCek)
+        # self.ui.btn_resimCek.setEnabled(True)
+        # self.ui.btn_resimCek.clicked.connect(self.addWorkerToShift)
 
     def isciKontrol(self):
         isciler = CreateConnection()["isciler"].find_one({
@@ -38,6 +41,7 @@ class AddWorkerWindow(QMainWindow):
         else:
             tcNo = self.ui.txt_TcNo.text()
             self.imagePath = self.home + tcNo
+            print(self.imagePath)
             self.createFolder(self.imagePath)
             return True
 
@@ -49,6 +53,7 @@ class AddWorkerWindow(QMainWindow):
             QMessageBox.warning(self, "Hata", f'{err}')
 
     def isciEkle(self):
+        self.ui.btn_kayit.setEnabled(False)
         if self.isciKontrol():
             yeni_isci = Worker()
             yeni_isci.tcNo = self.ui.txt_TcNo.text()
@@ -58,14 +63,27 @@ class AddWorkerWindow(QMainWindow):
             response = yeni_isci.save()
             QMessageBox.information(self, "Bilgi", "Kayıt Ekleniyor")
             if response:
+                self.addWorkerToShift(yeni_isci.tcNo)
                 QMessageBox.information(self, "Bilgi", "Kayıt Başarılı Oldu")
                 QMessageBox.information(self, "Bilgi", "Menüden Kamerayı Açınız")
+
                 return self.ui.actionStart_Camera.setEnabled(True)
             else:
                 QMessageBox.critical(self, "Hata", "Kayıt Başarısız Oldu")
 
         else:
             QMessageBox.critical(self, "Hata", "Böyle bir kullanıcı var")
+
+    def addWorkerToShift(self, tcNo):
+        db = CreateConnection()["vardiya"].find_one({"vardiya_adi": self.ui.cmb_Vardiyas.currentText()})[
+            'vardiya_iscileri']
+        idx = CreateConnection()['isciler'].find_one({"TcNo": tcNo})["_id"]
+        db.append(idx)
+        CreateConnection()['vardiya'].update_one({"vardiya_adi": self.ui.cmb_Vardiyas.currentText()}, {
+            "$set": {
+                "vardiya_iscileri": db
+            }
+        })
 
     def startCam(self):
         self.ui.btn_resimCek.setEnabled(True)
@@ -75,7 +93,7 @@ class AddWorkerWindow(QMainWindow):
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 500)
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame)
-        self.timer.start(1000. / 24)
+        self.timer.start(1000. / 24.0)
 
     def update_frame(self):
         ret, self.image = self.capture.read()

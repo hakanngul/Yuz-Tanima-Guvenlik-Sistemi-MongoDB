@@ -15,16 +15,31 @@ class SuperVisorWindow(QMainWindow):
         self.ui_settings()
         self.setImage()
         self.initSlots()
+
         self.show()
 
     def initSlots(self):
         self.ui.action_VardiyaEkle.triggered.connect(self.getVardiyaEkleWindow)
         self.ui.action_VardiyayaisciEkle.triggered.connect(self.addWorkerToShift)
+        self.ui.action_isciEkle.triggered.connect(self.addWorkerWindow)
+        self.ui.btn_login.clicked.connect(self.getMainWindow)
 
+
+
+    def getMainWindow(self):
+        from Views.MainWindow import MainWindowForm
+        superVisor = SuperVisor(username="yussuf")
+        print(superVisor)
+        print(type(superVisor))
+        self.mainWindow = MainWindowForm(SuperVisor=superVisor)
 
     def addWorkerToShift(self):
         from Views.SuperVisorAddWorkerToShift import AddWorkerToShiftWindow
         self.addwtoShift = AddWorkerToShiftWindow()
+
+    def addWorkerWindow(self):
+        from Views.AddWorker import AddWorkerWindow
+        self.addWorkerWindow = AddWorkerWindow()
 
     def setImage(self):
         print("test")
@@ -53,7 +68,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle("fusion")
     # newUser = SuperVisor("test", "123123").getSupervisor()
-    newUser = SuperVisor(username="test")
+    newUser = SuperVisor(username="yussuf")
     newAdmin = Admin()
     newAdmin.username = "admin"
     newAdmin.password = "123123"

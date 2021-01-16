@@ -29,8 +29,22 @@ class CommonMethods(ICommonMethods):
             else:
                 return False
 
+    @staticmethod
+    def getInformationShift(vardiya_adi):
+        if not vardiya_adi:
+            return False
+        else:
+            db = CreateConnection()["vardiya"].find_one({
+                "vardiya_adi": vardiya_adi
+            })
+            return db
+
     def checkAdmin(self):
         pass
+
+    @staticmethod
+    def getWorker(idNo):
+        return CreateConnection()["isciler"].find_one({"_id": idNo})
 
     @staticmethod
     def vardiya_degistir(yeniSorumlu, degisecek_vardiya):
